@@ -1,44 +1,285 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Education and Relevant Coursework</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-    </head>
-    <body class="is-preload">
 
-        <!-- Header -->
-        <div id="header">
-            <!-- Similar content to your landing page header -->
+<head>
+    <title>Academic Background - Jared Canty</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        /* Sidebar styling */
+        #sidebar p {
+            background-color: #2c3e50; 
+            padding: 20px;
+            width: 300px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #sidebar .icon {
+            color: #03191f;
+        }
+
+        #sidebar h1,
+        #sidebar p {
+            color: #010b0e;
+        }
+
+        /* Main content styling */
+        #main-content {
+            margin-left: 320px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.1em;
+            color: #34495e;
+        }
+
+        .degree-boxes {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .degree-box {
+            background-color: #bdc3c7;
+            border-radius: 10px;
+            padding: 20px;
+            width: 30%;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .degree-box:hover {
+            transform: translateY(-5px);
+            background-color: #95a5a6;
+        }
+
+        .degree-box embed,
+        .degree-box iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        .degree-box a {
+            display: block;
+            color: #34495e;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .degree-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back arrow and panel */
+        .back-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 60px;
+            background-color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom-right-radius: 10px;
+        }
+
+        .back-arrow {
+            font-size: 36px;
+            color: #ecf0f1;
+            cursor: pointer;
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #120202;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 1000px;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        /* Ensure the embedded PDF fits the modal */
+        .modal-content embed,
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Back Arrow Panel -->
+    <div class="back-panel">
+        <div class="back-arrow" onclick="window.history.back();">
+            ←
         </div>
+    </div>
 
-        <!-- Main -->
-        <div id="main">
-            <!-- Education Content -->
-            <section id="education" class="one">
-                <div class="container">
-                    <header>
-                        <h2>Education and Relevant Coursework</h2>
-                    </header>
-                    <p>Details about your education and relevant coursework.</p>
-                    <!-- You can add more content here -->
-                </div>
-            </section>
+    <!-- Main Content -->
+    <div id="main-content">
+        <h2>Academic Background</h2>
+        <p>Here is a brief overview of my educational qualifications, degrees, and certifications. Click on the boxes to expand verification.</p>
+
+        <div class="degree-boxes">
+            <div class="degree-box" onclick="openModal('modal1')">
+                <embed src="pdfs/degree1.pdf" type="application/pdf" />
+                <h3>Degree 1</h3>
+                <p>Graduated with a bachelors of science in information sciences from the University of Illinois at Urbana-Champaign</p>
+            </div>
+
+            <div class="degree-box" onclick="openModal('modal2')">
+                <embed src="pdfs/degree2.pdf" type="application/pdf" />
+                <h3>Degree 2</h3>
+                <p>Graduated with a bachelors of liberal arts and sciences in Brain and Cognitive Science from the University of Illinois at Urbana-Champaign.</p>
+            </div>
+
+            <div class="degree-box" onclick="openModal('modal3')">
+                <embed src="pdfs/scholarship.pdf" type="application/pdf" />
+                <h3>Degree 3</h3>
+                <p>coming soon</p>
+            </div>
+
+            <div class="degree-box" onclick="openModal('modal4')">
+                <embed src="pdfs/degree3.pdf" type="application/pdf" />
+                <h3>Degree 3</h3>
+                <p>coming soon</p>
+            </div>
+
+            <div class="degree-box" onclick="openModal('modal5')">
+                <embed src="pdfs/degree4.pdf" type="application/pdf" />
+                <h3>Degree 4</h3>
+                <p>coming soon</p>
+            </div>
+
+            <div class="degree-box" onclick="openModal('modal6')">
+                <embed src="pdfs/scholarship2.pdf" type="application/pdf" />
+                <h3>Scholarship 2</h3>
+                <p>coming soon</p>
+            </div>
         </div>
+    </div>
 
-        <!-- Footer -->
-        <div id="footer">
-            <!-- Empty Footer -->
+    <!-- Modal for PDFs -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal1')">&times;</span>
+            <embed src="pdfs/degree1.pdf" type="application/pdf" />
         </div>
+    </div>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
-    </body>
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal2')">&times;</span>
+            <embed src="pdfs/degree2.pdf" type="application/pdf" />
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
+            <embed src="pdfs/scholarship.pdf" type="application/pdf" />
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal4')">&times;</span>
+            <embed src="pdfs/degree3.pdf" type="application/pdf" />
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal5')">&times;</span>
+            <embed src="pdfs/degree4.pdf" type="application/pdf" />
+        </div>
+    </div>
+
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal6')">&times;</span>
+            <embed src="pdfs/scholarship2.pdf" type="application/pdf" />
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
+</body>
+
 </html>
